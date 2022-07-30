@@ -20,11 +20,9 @@ class CreateDoctorsTable extends Migration
             $table->integer('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users')->OnDelete();
 
-            $table->integer('facility_id')->unsigned()->nullable();
-            $table->foreign('facility_id')->references('id')->on('facilites')->OnDelete();
-
             $table->integer('shift_id')->unsigned()->nullable();
             $table->foreign('shift_id')->references('id')->on('shifts')->OnDelete();
+
             $table->timestamps();
 
         });

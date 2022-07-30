@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatefacilitesTable extends Migration
+class AddStatusToUsers extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreatefacilitesTable extends Migration
      */
     public function up()
     {
-        Schema::create('facilites', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name');
-            $table->timestamps();
+        Schema::table('users', function (Blueprint $table) {
+            $table->char('status', 20)->default('wait')->nullable();
         });
     }
+
     /**
      * Reverse the migrations.
      *
@@ -26,6 +25,8 @@ class CreatefacilitesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('facilites');
+        Schema::table('users', function (Blueprint $table) {
+            //
+        });
     }
 }

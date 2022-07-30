@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Booking;
 use App\Models\Doctor;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class DoctorController extends Controller
@@ -27,7 +29,8 @@ class DoctorController extends Controller
      */
     public function create()
     {
-        return view('admins.create-doctor');
+        $users = Booking::where('status', 'wait')->get();
+        return view('admins.create-doctor', compact('users'));
     }
 
     /**
@@ -38,33 +41,9 @@ class DoctorController extends Controller
      */
     public function store(Request $request)
     {
-    // Giá trị em mới truy vấn này là gì vậy?
-    // e update 2 bảng, em create bên bảng user rồi lấy id user mới tạo đó ccho vào bảng doctor ạ
-        $doctor = new Doctor();
-
-        // $doctor->user->name = $request->nameuser;
-        // $doctor->user->email = $request->emailuser;
-        // $doctor->user->password = $request->password;
-        // $doctor->user->role = '1';
-        // dd($doctor);
-        // $doctor->save();
-        $data = [
-            ''
-        ];
-        // user_id là em lấy giá trị Auth::id() (Auth::id là lấy id user hiện tại đang dăng nhập) phải không?
-
-        $doctor->create($request->all());
-
-
-
-        $doctor->user_id = $doctor->user->id;
-
-        $doctor->save();
+        Doctor::create($request->all());
 
         return view('admins.doctor');
-        // ok e
-        // phần create này a này. em nghĩ em làm sai rồi,
-
     }
 
     /**

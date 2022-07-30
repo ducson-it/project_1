@@ -14,16 +14,19 @@ class CreateBookingsTable extends Migration
     public function up()
     {
         Schema::create('bookings', function (Blueprint $table) {
+
             $table->increments('id');
 
             $table->integer('doctor_id')->unsigned()->nullable();
             $table->foreign('doctor_id')->references('id')->on('doctors')->OnDelete();
 
-            $table->integer('patient_id')->unsigned()->nullable();
-            $table->foreign('patient_id')->references('id')->on('patients')->OnDelete();
+            $table->integer('user_id')->unsigned()->nullable();
+            $table->foreign('user_id')->references('id')->on('users')->OnDelete();
+
+            $table->integer('shift_id')->unsigned()->nullable();
+            $table->foreign('shift_id')->references('id')->on('shifts')->OnDelete();
 
             $table->timestamps();
-
         });
     }
 

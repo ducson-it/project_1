@@ -16,11 +16,6 @@
                 <th>Name</th>
                 <th>Email</th>
                 <th>Level</th>
-                {{-- <th>YOB</th>
-                <th>Email</th>
-                <th>Phone</th>
-                <th>Address</th>
-                <th>Level</th> --}}
                 <th>Action</th>
             </tr>
         </thead>
@@ -32,11 +27,8 @@
                         <td><img width="100%" src="{{ asset('img/ducson.jpg') }}" alt=""></td>
                         <td>{{ $doctor->user->name }}</td>
                         <td>{{ $doctor->user->email }}</td>
+                        <td>{{ $doctor->user->status == 'wait' ? 'Chưa liên hệ' : 'Đã liên hệ' }}</td>
                         <td>{{ $doctor->level }}</td>
-                        {{-- <td>{{ $doctor->user->yob }}</td>
-                        <td>{{ $doctor->user->email }}</td>
-                        <td>{{ $doctor->user->phone }}</td>
-                        <td>{{ $doctor->user->address }}</td> --}}
                         <td>
                             <form action="{{ route('admins.doctor.destroy', $doctor->id) }}" method="post">
                                 @csrf

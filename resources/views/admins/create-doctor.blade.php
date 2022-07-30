@@ -11,29 +11,35 @@
         <form action="{{ route('admins.doctor.store') }}" method="post">
             @csrf
             <div class="mb-3">
-                <label class="form-label">Name</label>
+                <label class="form-label">Tên bác sĩ</label>
                 <input type="text" name="name" class="form-control" value="{{ old('name') }}"
-                    placeholder="Name">
+                    placeholder="Tên bác sĩ">
                 @error('name')
                     <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                 @enderror
             </div>
+
             <div class="mb-3">
-                <label class="form-label">Email</label>
-                <input type="email" name="email" class="form-control" value="{{ old('email') }}"
-                    placeholder="name@example.com">
-                @error('email')
+                <label class="form-label">Vị trí</label>
+                <input type="text" name="level" class="form-control" value="{{ old('level') }}"
+                    placeholder="Vị trí">
+                @error('level')
                     <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                 @enderror
             </div>
+
             <div class="mb-3">
-                <label class="form-label">Password</label>
-                <input type="password" name="password" class="form-control" value="{{ old('password') }}"
-                    placeholder="password">
-                @error('emailuser')
+                <label class="form-label">Bệnh nhân đang đợi</label>
+                <select name="user_id">
+                    @foreach ($users as $user)
+                    <option value="{{$user->getKey()}}">{{$user->name}}</option>
+                    @endforeach
+                </select>
+                @error('user_id')
                     <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                 @enderror
             </div>
+            {{-- Teamplate admin nayf em laasy owr ddaau z? em lay tren mang anh oi. vào trang mạng đó a xem e cũng k rõ. để em xem --}}
             {{-- <div class="mb-3">
                 <label class="form-label">Year of birth</label>
                 <input type="text" name="yob" class="form-control" value="{{ $doctor->user->yob }}"

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddRolesToUsers extends Migration
+class AddDoctorIdToUsers extends Migration
 {
     /**
      * Run the migrations.
@@ -14,8 +14,8 @@ class AddRolesToUsers extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            // Cootj caanf them trong bangr user
-            $table->string('role');
+            $table->integer('doctor_id')->unsigned()->nullable();
+            $table->foreign('doctor_id')->references('id')->on('doctors')->OnDelete();
         });
     }
 
