@@ -12,6 +12,6 @@ class Facility extends Model
     protected $table = 'facilities';
 
     protected $fillable = [
-        'name_facility',
+        'name',
     ];
 }

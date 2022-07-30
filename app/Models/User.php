@@ -10,6 +10,8 @@ use Laravel\Sanctum\HasApiTokens;
 use App\Models\Doctor;
 use App\Models\Gender;
 use App\Models\Patient;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class User extends Authenticatable
 {
@@ -24,6 +26,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role'
     ];
 
     /**
@@ -44,4 +47,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Get the user associated with the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function doctor(): HasOne
+    {
+        return $this->hasOne(Doctor::class, 'user_id', 'id');
+    }
 }

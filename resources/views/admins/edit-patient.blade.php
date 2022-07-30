@@ -8,13 +8,13 @@
         </div>
     @endif
     <div class="container">
-        <form action="{{ route('admins.doctor.update', $doctor->id) }}" method="post"
+        <form action="{{ route('admins.patient.update', $patient->id) }}" method="post"
         enctype="multipart/form-data">
             @method('PUT')
             @csrf
             <div class="mb-3">
                 <label class="form-label">Name</label>
-                <input type="text" name="nameuser" class="form-control" value="{{ $doctor->user->name }}"
+                <input type="text" name="nameuser" class="form-control" value="{{ $patient->user->name }}"
                     placeholder="Name">
                 @error('nameuser')
                     <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
@@ -22,7 +22,7 @@
             </div>
             <div class="mb-3">
                 <label class="form-label">Email</label>
-                <input type="email" name="emailuser" class="form-control" value="{{ $doctor->user->email }}"
+                <input type="email" name="emailuser" class="form-control" value="{{ $patient->user->email }}"
                     placeholder="name@example.com">
                 @error('emailuser')
                     <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
@@ -30,7 +30,7 @@
             </div>
             {{-- <div class="mb-3">
                 <label class="form-label">Year of birth</label>
-                <input type="text" name="yob" class="form-control" value="{{ $doctor->user->yob }}"
+                <input type="text" name="yob" class="form-control" value="{{ $patient->user->yob }}"
                     placeholder="Year of birth">
                 @error('yob')
                     <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
@@ -38,7 +38,7 @@
             </div>
             <div class="mb-3">
                 <label for="formFile" class="form-label">Phone</label>
-                <input class="form-control" name="phoneuser" value="{{ $doctor->user->phone }}" type="text">
+                <input class="form-control" name="phoneuser" value="{{ $patient->user->phone }}" type="text">
                 @error('phoneuser')
                     <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                 @enderror
@@ -58,14 +58,14 @@
                     <label for="formFile" class="form-label">Gender</label>
                     <div class="form-check">
                         <input class="form-check-input" type="radio" value="male"
-                            {{ $doctor->user->gender == 'male' ? 'checked' : '' }} name="gender" id="gender1">
+                            {{ $patient->user->gender == 'male' ? 'checked' : '' }} name="gender" id="gender1">
                         <label class="form-check-label" for="gender1">
                             Male
                         </label>
                     </div>
                     <div class="form-check">
                         <input class="form-check-input" type="radio" value="female" name="gender"
-                            {{ $doctor->user->gender == 'female' ? 'checked' : '' }} id="gender2">
+                            {{ $patient->user->gender == 'female' ? 'checked' : '' }} id="gender2">
                         <label class="form-check-label" for="gender2">
                             Female
                         </label>
@@ -74,21 +74,21 @@
                         <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                     @enderror
                 </div> --}}
-                <div class="col-6">
+                {{-- <div class="col-6">
                     <div>
                         <label for="formFile" class="form-label">Level</label>
                     </div>
                     <select class="form-select" name="select">
-                        <option value="thac si" {{($doctor->level == 'thac si')? 'selected' : ''}}>Thạc sĩ</option>
-                        <option value="tien si" {{($doctor->level == 'tien si')? 'selected' : ''}}>Tiến sĩ</option>
-                        <option value="giao su" {{($doctor->level == 'giao su')? 'selected' : ''}}>Giáo sư</option>
+                        <option value="thac si" {{($patient->level == 'thac si')? 'selected' : ''}}>Thạc sĩ</option>
+                        <option value="tien si" {{($patient->level == 'tien si')? 'selected' : ''}}>Tiến sĩ</option>
+                        <option value="giao su" {{($patient->level == 'giao su')? 'selected' : ''}}>Giáo sư</option>
                     </select>
-                </div>
+                </div> --}}
             </div>
             {{-- <div class="mb-3">
                 <div class="form-floating">
                     <label for="formFile" class="form-label">Description</label>
-                    <textarea class="form-control" name="description" placeholder="Leave a comment here" id="floatingTextarea">{{ $doctor->user->description }}</textarea>
+                    <textarea class="form-control" name="description" placeholder="Leave a comment here" id="floatingTextarea">{{ $patient->user->description }}</textarea>
                     @error('description')
                         <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                     @enderror

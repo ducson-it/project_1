@@ -2,14 +2,14 @@
 
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\DoctorController;
+use App\Http\Controllers\Admin\DoctorController;
 
-use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Admin\AdminController;
 
-use App\Http\Controllers\PatientController;
+use App\Http\Controllers\Admin\PatientController;
 
 use App\Http\Controllers\ShiftController;
-
+use App\Models\Doctor;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,22 +28,7 @@ Route::get('/', function () {
 
 Route::prefix('admins')->name('admins.')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('dashboard');
-    Route::prefix('doctor')->name('doctor.')->group(function (){
-        Route::get('/', [DoctorController::class, 'index'])->name('list-doctor');
-        Route::get('/edit/{id}', [DoctorController::class, 'edit'])->name('edit-doctor');
-        Route::post('/edit/{id}', [DoctorController::class, 'handleEdit'])->name('handle-edit-doctor');
-        Route::get('/delete/{id}', [DoctorController::class, 'deleteDoctor'])->name('delete-doctor');
-        Route::get('/show/{id}', [DoctorController::class, 'show'])->name('show');
-    });
+    Route::resource('doctor', DoctorController::class);
+    Route::resource('patient', PatientController::class);
 
-    Route::get('/shift', [ShiftController::class, 'index'])->name('shift');
-    Route::get('/shift/add', [ShiftController::class, 'addShift'])->name('add-shift');
-
-    Route::get('/patient', [PatientController::class, 'index'])->name('patient');
-    Route::get('/patient', [PatientController::class, 'index'])->name('patient');
 });
-
-// Route::prefix('doctors')->name('doctors.')->group(function () {
-//     Route::get('/', [AdminController::class, 'index'])->name('dashboard');
-//     Route::get('/doctor', [DoctorController::class, 'index'])->name('doctor');
-// });

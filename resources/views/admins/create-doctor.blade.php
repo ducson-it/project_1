@@ -1,29 +1,35 @@
 @extends('layouts.layout_admin_master')
 
 @section('content')
-    <h1>Thông tin chi bác sĩ</h1>
+    <h1>Đăng ký user bác sĩ</h1>
     @if (session('msg'))
         <div class="alert alert-success mb-1 mt-1">
             {{ session('msg') }}
         </div>
     @endif
     <div class="container">
-        <form action="{{ route('admins.doctor.update', $doctor->id) }}" method="post"
-        enctype="multipart/form-data">
-            @method('PUT')
+        <form action="{{ route('admins.doctor.store') }}" method="post">
             @csrf
             <div class="mb-3">
                 <label class="form-label">Name</label>
-                <input type="text" name="nameuser" class="form-control" value="{{ $doctor->user->name }}"
+                <input type="text" name="name" class="form-control" value="{{ old('name') }}"
                     placeholder="Name">
-                @error('nameuser')
+                @error('name')
                     <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                 @enderror
             </div>
             <div class="mb-3">
                 <label class="form-label">Email</label>
-                <input type="email" name="emailuser" class="form-control" value="{{ $doctor->user->email }}"
+                <input type="email" name="email" class="form-control" value="{{ old('email') }}"
                     placeholder="name@example.com">
+                @error('email')
+                    <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Password</label>
+                <input type="password" name="password" class="form-control" value="{{ old('password') }}"
+                    placeholder="password">
                 @error('emailuser')
                     <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                 @enderror
@@ -74,7 +80,7 @@
                         <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                     @enderror
                 </div> --}}
-                <div class="col-6">
+                {{-- <div class="col-6">
                     <div>
                         <label for="formFile" class="form-label">Level</label>
                     </div>
@@ -83,7 +89,7 @@
                         <option value="tien si" {{($doctor->level == 'tien si')? 'selected' : ''}}>Tiến sĩ</option>
                         <option value="giao su" {{($doctor->level == 'giao su')? 'selected' : ''}}>Giáo sư</option>
                     </select>
-                </div>
+                </div> --}}
             </div>
             {{-- <div class="mb-3">
                 <div class="form-floating">
@@ -94,7 +100,7 @@
                     @enderror
                 </div>
             </div> --}}
-            <button type="submit" class="btn btn-primary">Update</button>
+            <button type="submit" class="btn btn-primary">Đăng ký</button>
         </form>
     </div>
 @endsection

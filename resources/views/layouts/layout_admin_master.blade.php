@@ -39,7 +39,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('admins.dashboard') }}">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('admins.doctor.index') }}">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -66,14 +66,14 @@
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('admins.doctor.list-doctor') }}">
+                <a class="nav-link" href="{{ route('admins.doctor.index') }}">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>Quản lý bác sĩ</span>
                 </a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('admins.patient') }}">
+                <a class="nav-link" href="{{ route('admins.patient.index') }}">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>Quản lý bệnh nhân</span>
                 </a>
@@ -83,16 +83,16 @@
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('admins.shift') }}">
+                <a class="nav-link" href="">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Shift</span></a>
             </li>
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link" href="{{ route('admins.doctor.create') }}">
                     <i class="fas fa-fw fa-table"></i>
-                    <span>Tables</span></a>
+                    <span>Tạo user bác sĩ</span></a>
             </li>
 
             <!-- Divider -->

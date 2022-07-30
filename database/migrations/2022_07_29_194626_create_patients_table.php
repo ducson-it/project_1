@@ -14,11 +14,12 @@ class CreatePatientsTable extends Migration
     public function up()
     {
         Schema::create('patients', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('id_user_patient');
-            $table->timestamps();
+            $table->increments('id');
 
-            $table->foreign('id_user_patient')->references('id')->on('users');
+            $table->integer('user_id')->unsigned()->nullable();
+            $table->foreign('user_id')->references('id')->on('users')->OnDelete();
+
+            $table->timestamps();
         });
     }
 

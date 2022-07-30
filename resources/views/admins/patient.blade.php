@@ -1,37 +1,55 @@
 @extends('layouts.layout_admin_master')
 
 @section('content')
-    <h1>Quản lý bệnh nhân</h1>
+    @if (session('msg'))
+        <div class="alert alert-success mb-1 mt-1">
+            {{ session('msg') }}
+        </div>
+    @endif
+    <h1>Quản lý bác sĩ</h1>
     <table class="table">
         <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Image</th>
-            <th scope="col">Name</th>
-            <th scope="col">YOB</th>
-            <th scope="col">Email</th>
-            <th scope="col">Phone</th>
-            <th scope="col">Address</th>
-            <th scope="col">Action</th>
-          </tr>
+            <tr>
+                <th></th>
+                <th>#</th>
+                <th width='20%'>Image</th>
+                <th>Name</th>
+                <th>Email</th>
+                {{-- <th>Level</th> --}}
+                {{-- <th>YOB</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Address</th>
+                <th>Level</th> --}}
+                <th>Action</th>
+            </tr>
         </thead>
-        {{-- <tbody>
-            @php($stt = 1)
-            @foreach($listPatient as $Patient)
-                <tr>
-                    <th scope="row">{{ $stt++ }}</th>
-                    <td>{{ $Patient->user->image }}</td>
-                    <td>{{ $Patient->user->name }}</td>
-                    <td>{{ $Patient->user->yob }}</td>
-                    <td>{{ $Patient->user->email }}</td>
-                    <td>{{ $Patient->user->phone }}</td>
-                    <td>{{ $Patient->user->address }}</td>
-                    <td>
-                        <a href="#" class="btn btn-danger" onclick="return confirm('Are you want to delete?')">Xóa</a>
-                        <a href="#" class="btn btn-primary">edit</a>
-                    </td>
-                </tr>
-            @endforeach
-        </tbody> --}}
-      </table>
+        <tbody>
+                @php($stt = 1)
+                @foreach ($listPatient as $patient)
+                    <tr>
+                        <th>{{ $stt++ }}</th>
+                        <td><img width="100%" src="{{ asset('img/ducson.jpg') }}" alt=""></td>
+                        <td>{{ $patient->user->name }}</td>
+                        <td>{{ $patient->user->email }}</td>
+                        {{-- <td>{{ $doctor->level }}</td> --}}
+                        {{-- <td>{{ $doctor->user->yob }}</td>
+                        <td>{{ $doctor->user->email }}</td>
+                        <td>{{ $doctor->user->phone }}</td>
+                        <td>{{ $doctor->user->address }}</td> --}}
+                        <td>
+                            <form action="{{ route('admins.patient.destroy', $patient->id) }}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">Xóa</button>
+                            </form>
+                            <form action="{{ route('admins.patient.edit', $patient->id) }}" method="get">
+                                @csrf
+                                <button type="submit" class="btn btn-primary">Edit</button>
+                            </form>
+                        </td>
+                    </tr>
+                @endforeach
+        </tbody>
+    </table>
 @endsection

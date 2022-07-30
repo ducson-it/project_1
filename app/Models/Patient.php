@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Patient extends Model
 {
@@ -12,6 +13,16 @@ class Patient extends Model
     protected $table = 'patients';
 
     protected $fillable = [
-        'id_user_patient',
+        'user_id',
     ];
+
+    /**
+     * Get the user that owns the Patient
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
 }
